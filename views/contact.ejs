@@ -1,0 +1,71 @@
+<!-- contact.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Contact Me</h1>
+
+    <form action="/submit-form" method="POST" id="contact-form">
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" required /><br /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required /><br /><br />
+
+        <label for="message">Message:</label><br />
+        <textarea id="message" name="message"></textarea><br /><br />
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            let isValid = true;
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+
+            if (nameInput.value.trim() === '') {
+                alert('Please enter your name.');
+                isValid = false;
+                event.preventDefault();
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                alert('Please enter a valid email address.');
+                isValid = false;
+                event.preventDefault();
+            }
+
+            if (messageInput.value.trim() === '') {
+                alert('Please enter a message.');
+                isValid = false;
+                event.preventDefault();
+            }
+            if (isValid) {
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+
+</html>
